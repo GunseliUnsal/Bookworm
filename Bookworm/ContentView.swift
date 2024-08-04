@@ -19,18 +19,24 @@ struct ContentView: View {
             List{
                 ForEach(books) {book in
                     NavigationLink(value: book) {
-                        HStack{
+                        HStack {
                             EmojiRatingView(rating: book.rating)
                                 .font(.largeTitle)
                             
-                            VStack(alignment: .leading){
-                                Text(book.title).font(.headline)
-                                Text(book.author).foregroundStyle(.secondary)
+                            VStack(alignment: .leading) {
+                                Text(book.title)
+                                    .font(.headline)
+                                
+                                Text(book.author)
+                                    .foregroundStyle(.secondary)
                             }
-                        }
-                    }
+                        }                    }
                     
                 }
+            }
+            .navigationTitle("Bookworm")
+            .navigationDestination(for: Book.self) { book in
+                DetailView(book: book)
             }
             .toolbar{
                 ToolbarItem(placement: .topBarTrailing){
