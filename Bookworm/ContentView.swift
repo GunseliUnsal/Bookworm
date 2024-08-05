@@ -29,6 +29,7 @@ struct ContentView: View {
                             VStack(alignment: .leading) {
                                 Text(book.title)
                                     .font(.headline)
+                                    .foregroundStyle(book.rating == 1 ? Color.red : Color.black)
 
                                 Text(book.author)
                                     .foregroundStyle(.secondary)
@@ -65,6 +66,7 @@ struct ContentView: View {
             modelContext.delete(book)
         }
     }
+        
 }
 
 #Preview {

@@ -44,19 +44,26 @@ struct AddBookView: View {
                 //MARK: Save
                 Section(){
                     Button(action: {
-                        let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating)
+                        let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating, date: .now)
                         
                         modelContext.insert(newBook)
                         dismiss()
                         
                     }, label: {
                         Text("Save")
-                    })
+                    }).disabled(hasValidForm == false)
                 }
                 
             }
             .navigationTitle("Add Book")
         }
+    }
+    var hasValidForm: Bool {
+        if title.isReallyEmpty || genre.isReallyEmpty || author.isReallyEmpty || review.isReallyEmpty {
+            return false
+        }
+
+        return true
     }
 }
 
